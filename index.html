@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>2.5D test</title>
+    <style>
+    body {
+        background-color: #000;
+        color: #ffffff;
+    }
+    
+    #canvas {
+        width: 400px;
+        height: 400px;
+        position: absolute;
+        overflow: hidden;
+        left: 10px;
+        top: 10px;
+        border: thin solid white;
+    }
+    
+    #canvas * {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }
+    </style>
+    
+    
+</head>
+
+<body>
+<ul style="display: none">
+    <li><img src="http://www.axdn.com/redist/axpssp_i.png" alt=""/></li>
+    <li><img src="http://www.axdn.com/redist/axpssp_i.png" alt=""/></li>
+    <li><img src="http://www.axdn.com/redist/axpssp_i.png" alt=""/></li>
+    <li><img src="http://www.axdn.com/redist/axpssp_i.png" alt=""/></li>
+    <li><img src="http://www.axdn.com/redist/axpssp_i.png" alt=""/></li>
+    <li><img src="http://www.axdn.com/redist/axpssp_i.png" alt=""/></li>
+    <li><img src="http://www.axdn.com/redist/axpssp_i.png" alt=""/></li>
+    <li><img src="http://www.axdn.com/redist/axpssp_i.png" alt=""/></li>
+    <li><img src="http://www.axdn.com/redist/axpssp_i.png" alt=""/></li>
+    <li><img src="http://www.axdn.com/redist/axpssp_i.png" alt=""/></li>
+    <li><img src="http://www.axdn.com/redist/axpssp_i.png" alt=""/></li>
+    <li><img src="http://www.axdn.com/redist/axpssp_i.png" alt=""/></li>
+</ul>
+    
+    
+<div id="canvas" style="position: absolute; top: 10px; left: 10px; width: 800px; height: 800px;">
+</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/dojo/1.6.0/dojo/dojo.xd.js.uncompressed.js"></script>
+    <script src="js3d.js" type="text/javascript"></script>
+    
+    
+<script>
+var pause = false;
+dojo.connect(window, "click", function(){
+    if(pause)
+        pause = false;
+    else
+        pause = true;
+});
+dojo.ready(function(){
+    dojo.connect
+   var canvas;
+   canvas = new JS3D("canvas");
+   //canvas.addPoint(100, 0, -100, "test")
+   canvas.matrix = canvas.identity()
+   canvas.matrix = canvas.translate(canvas.width/2, 100, -400);
+   
+   for (var t = 0; t < 23; t++) {
+        p = canvas.addPoint(Math.cos(t/3),
+                        t,
+                        Math.sin(t/3), "", canvas.scale(150,4, 150, canvas.identity()))
+        
+        dojo.create("img", {src:'http://www.axdn.com/redist/axpssp_i.png'},p.div )
+   }
+   //canvas.addPoint()
+   //canvas.matrix = canvas.translate(0,0,-1);
+   
+   window.setInterval(dojo.hitch(this, function(){
+    console.log("!!!");
+    if (pause) return;
+        //canvas.matrix = canvas.rotateZ(0.1);
+        canvas.matrix = canvas.rotateY(0.05);
+        canvas.paint();
+   }), 30);
+});
+
+</script>
+</body>
+</html>
